@@ -1,6 +1,9 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/***
+ * Utils about checking input to simply the error handling
+ */
 public class Utils {
     /**
      * @param value

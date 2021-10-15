@@ -1,5 +1,9 @@
 import java.util.List;
 
+/***
+ * An abstract class.
+ * It has attribute of hand list, name, money and other general method.
+ */
 public abstract class Player {
     protected List<Hand> hands;
     protected int money;

@@ -1,5 +1,10 @@
 import java.util.ArrayList;
 
+/***
+ * TE game hand
+ * According to the rule, hand may hit, stand.
+ * This class has no extra feature.
+ */
 public class TEHand extends Hand {
     public TEHand() {
         cards = new ArrayList<>(16);
@@ -26,10 +31,10 @@ public class TEHand extends Hand {
 
     public static void main(String[] args) {
         TEHand hand = new TEHand();
-        hand.add(new Card(Card.Color.CLUB, "A"));
-        hand.add(new Card(Card.Color.CLUB, "3"));
-        hand.add(new Card(Card.Color.CLUB, "9"));
-        hand.add(new Card(Card.Color.CLUB, "10"));
+        hand.add(new Card(Card.Suit.CLUB, "A"));
+        hand.add(new Card(Card.Suit.CLUB, "3"));
+        hand.add(new Card(Card.Suit.CLUB, "9"));
+        hand.add(new Card(Card.Suit.CLUB, "10"));
         System.out.println(hand.getMaxValue());
     }
 }

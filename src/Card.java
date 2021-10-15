@@ -1,16 +1,19 @@
+/***
+ * One card, has suit and rank.
+ */
 public class Card {
-    enum Color {SPADE, HEART, DIAMOND, CLUB}
+    enum Suit {SPADE, HEART, DIAMOND, CLUB, JOKER}
 
     private final String rank;
-    private final Color color;
+    private final Suit suit;
 
-    public Card(Color color, String rank) {
-        this.color = color;
+    public Card(Suit suit, String rank) {
+        this.suit = suit;
         this.rank = rank;
     }
 
-    public Color getColor() {
-        return color;
+    public Suit getSuit() {
+        return suit;
     }
 
     public String getRank() {
@@ -19,7 +22,7 @@ public class Card {
 
     @Override
     public String toString() {
-        switch (color) {
+        switch (suit) {
             case SPADE:
                 return "\u2660" + rank;
             case CLUB:
@@ -28,6 +31,8 @@ public class Card {
                 return "\u2665" + rank;
             case DIAMOND:
                 return "\u2666" + rank;
+            case JOKER:
+                return "\uD83C\uDCCF";
         }
         return "no card";
     }

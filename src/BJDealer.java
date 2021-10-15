@@ -1,5 +1,8 @@
-import java.util.ArrayList;
-
+/***
+ * BlackJack game dealer.
+ * Extends from BJPlayer, because the dealer is similar to BJPlayer.
+ * When show hand, only show the first card.
+ */
 public class BJDealer extends BJPlayer {
 
     public BJDealer() {

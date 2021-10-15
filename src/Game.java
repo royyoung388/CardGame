@@ -1,5 +1,9 @@
 import java.util.Scanner;
 
+/***
+ * Entrance for the game.
+ * It contains BlackJack Game, and TE Game.
+ */
 public class Game {
     private CardGame game;
 

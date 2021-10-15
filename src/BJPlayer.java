@@ -1,5 +1,9 @@
 import java.util.ArrayList;
 
+/***
+ * BlackJack Player, extends Player.
+ * BJPlayer may split or double the hand, then the bet and money will also change.
+ */
 public class BJPlayer extends Player {
 
     public BJPlayer(int money) {
@@ -19,7 +23,18 @@ public class BJPlayer extends Player {
     public BJHand secondHand() {
         if (hands.size() > 1)
             return getBJHands(1);
-        throw null;
+        return null;
+    }
+
+    // can split the hand?
+    public boolean canSplit() {
+        return hands.size() == 1 && firstHand().canSplit() && firstHand().getBet() < getMoney();
+    }
+
+    // split the hand
+    public void split() {
+        addHand(firstHand().split());
+        stake(secondHand(), firstHand().getBet());
     }
 
     public void doubleUp(BJHand hand) {

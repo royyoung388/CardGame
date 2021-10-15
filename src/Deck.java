@@ -2,38 +2,53 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/***
+ * It includes the draw deck and discard Deck.
+ * When draw deck is empty, the discard deck will reshuffle into draw deck automatically.
+ */
 public class Deck {
-    private List<Card> deck;
-    private List<Card> discard;
+    protected List<Card> drawDeck;
+    protected List<Card> discard;
 
     public Deck() {
-        discard = new ArrayList<>(52);
+        drawDeck = new ArrayList<>(54);
+        discard = new ArrayList<>(54);
+    }
 
-        Card.Color[] colors = {Card.Color.CLUB, Card.Color.SPADE, Card.Color.DIAMOND, Card.Color.HEART};
+    public Deck(List<Card> cards) {
+        this();
+        init(cards);
+    }
+
+    public void init(List<Card> cards) {
+        drawDeck.addAll(cards);
+    }
+
+    public void init52() {
+        Card.Suit[] suits = {Card.Suit.CLUB, Card.Suit.SPADE, Card.Suit.DIAMOND, Card.Suit.HEART};
         String[] ranks = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
-        deck = new ArrayList<>(52);
-        for (Card.Color c : colors)
+        for (Card.Suit c : suits)
             for (String r : ranks)
-                deck.add(new Card(c, r));
+                drawDeck.add(new Card(c, r));
     }
 
     public Card draw() {
-        if (deck.size() == 0)
+        if (drawDeck.size() == 0)
             reshuffle();
-        return deck.remove(0);
+        return drawDeck.remove(0);
     }
 
     /**
      * shuffle the discard to deck
      */
     public void reshuffle() {
-        deck.addAll(discard);
+        drawDeck.addAll(discard);
         discard.clear();
         shuffle();
     }
 
     public void shuffle() {
-        Collections.shuffle(deck);
+        Collections.shuffle(drawDeck);
     }
 
     public void discard(List<Card> cards) {

@@ -1,3 +1,8 @@
+/***
+ * Banker in the TE game.
+ * It extends from Player rather than TEPlayer.
+ * Because it's only a decorator, not an actual player.
+ */
 public class TEBanker extends Player {
     private TEPlayer player;
 

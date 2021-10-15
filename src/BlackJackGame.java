@@ -1,5 +1,10 @@
 import java.util.Scanner;
 
+/***
+ * BlackJack Game, extends from CardGame.
+ * The procedure obeys the general card game.
+ * The player should follow the instruction to play the game.
+ */
 public class BlackJackGame extends CardGame {
     private Deck deck;
     private BJPlayer player;
@@ -9,6 +14,8 @@ public class BlackJackGame extends CardGame {
 
     public BlackJackGame() {
         deck = new Deck();
+        deck.init52();
+        deck.shuffle();
         dealer = new BJDealer();
         player = new BJPlayer(200);
         scanner = new Scanner(System.in);
@@ -48,7 +55,7 @@ public class BlackJackGame extends CardGame {
         do {
             newRound();
             endRound();
-        }while (!isGameEnd());
+        } while (!isGameEnd());
         end();
     }
 
@@ -95,14 +102,14 @@ public class BlackJackGame extends CardGame {
         }
 
         // split the hand
-        if (player.firstHand().canSplit() && player.firstHand().getBet() < player.getMoney()) {
+        if (player.canSplit()) {
             String choice;
             do {
                 System.out.println("Do you want to split your hand? (Y/N)");
                 choice = scanner.next().strip().toUpperCase();
                 if (choice.equals("Y")) {
                     // split hand and draw
-                    player.addHand(player.firstHand().split());
+                    player.split();
                     player.firstHand().hit(deck.draw());
                     player.secondHand().hit(deck.draw());
 

@@ -1,5 +1,8 @@
 import java.util.*;
 
+/***
+ * TE game, inherits the BoardGame class. Implements all the abstract method.
+ */
 public class TEGame extends CardGame {
     private Deck deck;
     private List<TEPlayer> players;
@@ -9,6 +12,8 @@ public class TEGame extends CardGame {
 
     public TEGame() {
         deck = new Deck();
+        deck.init52();
+        deck.shuffle();
         players = new ArrayList<>();
         scanner = new Scanner(System.in);
     }

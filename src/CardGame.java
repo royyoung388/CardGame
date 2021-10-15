@@ -1,3 +1,8 @@
+/***
+ * Represents general card game.
+ * For one card game, it has multiple round.
+ * A typical procedure: start -> new round -> is round end -> end round -> is game end -> end.
+ */
 public abstract class CardGame {
     public abstract boolean isRoundEnd();
 

@@ -1,5 +1,9 @@
 import java.util.List;
 
+/***
+ * Abstract class, represents one hand.
+ * It has a card list, status and bet for this hand.
+ */
 public abstract class Hand {
     protected List<Card> cards;
     protected STATUS status = STATUS.NORMAL;

@@ -1,56 +1,49 @@
 # Structure
-Rule.java. Interface, defined 3 common rule, Is the boardGame end? Who is the winner? Is the move valid?
-BoardGame.java. Abstract Class, a base class, implements the Rule interface. Defined several general methods and abstract methods.
+Main.java. Start the game.
+Game.java. Entrance for the game. It contains BlackJack Game, and TE Game.
 
-TTTGame.java. Tic-tac-toe boardGame, inherits the BoardGame class.
-OACGame.java. Order and Chaos boardGame, inherits the BoardGame class.
-CustomTTTGame.java. Custom tic-tac-toe boardGame, inherits the BoardGame class.
+CardGame.java. Abstract Class, a base class, contains the general variables, and defined several general methods and abstract methods. It Represents general card game, a typical procedure: start -> new round -> is round end -> end round -> is game end -> end.
+BlackJackGame.java. BlackJack game, inherits the CardGame class. Implements all the abstract method.
+TEGame.java. TE game, inherits the BoardGame class. Implements all the abstract method.
 
-Utils.java. General methods to check the board with win condition.
+Card.java. Represents one card, has rank and suit.
+Deck.java. It includes the draw deck and discard deck. When draw deck is empty, the discard deck will reshuffle into draw deck automatically.
 
-Cell.java. One cell on the board, used to record the mark.
-Board.java. Board, made by 2D cells list.
+Hand.java. Abstract class, represents one hand. It has a card list, status and bet for this hand.
+BJHand.java. Extends from Hand.java. Has method to judge BlackJack, and split this hand.
+TEHand.java. Extends from Hand.java. According to the rule, hand may hit, stand. This class has no extra feature.
 
-Player.java. Player, has a name.
-Team.java. Team, has a symbol, every team consists of at least 1 player.
+Player.java. An abstract class. It has attribute of hand list, name, money and other general method.
+BJPlayer.java. BlackJack Player, extends Player. BJPlayer may split or double the hand, then the bet and money will also change.
+BJDealer.java. BlackJack game dealer. Extends from BJPlayer, because the dealer is similar to BJPlayer. When show hand, only show the first card.
+TEPlayer.java. Extends from Player. TEPlayer may stand or hit the hand. Beside it also can transfer to banker.
+TEBanker.java. Banker in TE game. It extends from Player rather than TEPlayer. Because it's only a decorator, not an actual player.
 
-ScoreBoard.java. Scoreboard, record the score of every team.
-
-Game.java. Control the 3 games. Decided to play which boardGame, and start a new boardGame or replay.
-Main.java. Start the Game.
-
+CardTools.java. Some tools for card game. E.g. get the face of a card, get the all possible value for a card list.
+Utils.java. Utils about checking input to simply the error handling.
 
 # Robust
 Every input will be checked. If you input the wrong information, there will be an error, and asking for a new input.
-For every move, the boardGame will check the validation.
-For custom TTT boardGame, the relationship between team number and player number, board size and win condition will be checked. And you are not allowed to input the same team symbol.
-
 
 # Scalability And Extensibility
-Board scalability: Create different size of cell list will create different size of board.
-Player Scalability: Shows in Team.java and Player.java. Multiply players can be added to same team. And every team will choose the next player to make a move.
-Extensibility: Shows in the Rule.java interface, BoardGame.java base class. Creating a new class by inheriting the BoardGame makes extensibility possible.
+Scalability:
+For TE game, it can decide the number of players.
+For other card game with different cards, initializing the deck with different card list.
+If one player has more hands, just creating new hand and add to player's hand list.
 
+Extensibility:
+Extends the CardGame.java, and implements all the general producer will create a new card game.
+Extends the Player.java and implements necessary methods, then you can get a new player with different behavior.
 
 # instruction
-1. you should choose which boardGame you want to play.
+1. You should choose which card game you want to play.
 
-2.1 If you chose the TTT BoardGame, the team and player will be defined as Team 1 with player O, Team 2 with player X, which is not changeable. And the board will be 3X3.
-Then, you should follow the prompt to input row and column to make a move.
-After every move, the boardGame will judge if the boardGame is end, or change the player.
-At the end, the scoreboard will record the score of every team.
+2.1. If you choose the BlackJack Game, which only have one player with one dealer.
+Then, you should follow the prompt to do actions.
+After every round, the game will judge if the game is end.
+You can also choose to end the game.
 
-2.2 If you chose the OAC BoardGame, the team and player will be defined as Team 1 with player Order, Team 2 with player Chaos, which is not changeable. And the board will be 6X6.
-Then, you should follow the prompt to input chess, row and column to make a move.
-After every move, the boardGame will judge if the boardGame is end, or change the player.
-At the end, the scoreboard will record the score of every team.
-
-2.3 If you chose the Custom TTT BoardGame, you should input the board size, team number, team symbols, player number, win condition following the prompt.
-The boardGame will automatically distribute the players and teams which will be shown.
-Then, you should follow the prompt to input row, column to make a move.
-After every move, the boardGame will judge if the boardGame is end, or change the team and player.
-At the end, the scoreboard will record the score of every team.
-
-3. After each boardGame, you can decide play again or not.
-If you want to play again, the scoreboard will not be reset which means the score will be remembered.
-If you want to play a new boardGame, the scoreboard will be reset, and you will be asked to choose a new game.
+2.2. If you choose the TE Game, you need to input the number of players.
+Then every player should follow the prompt to do actions.
+After every round, the game will judge if the game is end.
+Every player can also choose to end the game.

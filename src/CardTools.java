@@ -1,6 +1,10 @@
 import java.util.Arrays;
 import java.util.List;
 
+/***
+ * Some tools for card game.
+ * E.g. get the face of a card, get the all possible value for a card list.
+ */
 public class CardTools {
     private static final String[] ranks = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
     private static final int[] values = {-1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10};

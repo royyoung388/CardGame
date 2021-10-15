@@ -1,6 +1,9 @@
 import java.util.ArrayList;
-import java.util.Comparator;
 
+/***
+ * TE Player, extends Player.
+ * TEPlayer may stand or hit the hand. Beside it also can transfer to banker
+ */
 public class TEPlayer extends Player implements Comparable<TEPlayer> {
     public TEPlayer(int money) {
         this.money = money;

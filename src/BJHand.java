@@ -1,5 +1,10 @@
 import java.util.ArrayList;
 
+/***
+ * BlackJack game hand
+ * According to the rule, hand may hit, split, stand, double up.
+ * Natural BlackJack is always the biggest.
+ */
 public class BJHand extends Hand {
 
     public BJHand() {
@@ -51,10 +56,10 @@ public class BJHand extends Hand {
 
     public static void main(String[] args) {
         BJHand hand = new BJHand();
-        hand.add(new Card(Card.Color.CLUB, "A"));
-        hand.add(new Card(Card.Color.CLUB, "3"));
-        hand.add(new Card(Card.Color.CLUB, "9"));
-        hand.add(new Card(Card.Color.CLUB, "10"));
+        hand.add(new Card(Card.Suit.CLUB, "A"));
+        hand.add(new Card(Card.Suit.CLUB, "3"));
+        hand.add(new Card(Card.Suit.CLUB, "9"));
+        hand.add(new Card(Card.Suit.CLUB, "10"));
         System.out.println(hand.getMaxValue());
     }
 }
