@@ -53,13 +53,4 @@ public class BJHand extends Hand {
     public boolean isBust() {
         return getMaxValue() > BlackJackGame.MAX;
     }
-
-    public static void main(String[] args) {
-        BJHand hand = new BJHand();
-        hand.add(new Card(Card.Suit.CLUB, "A"));
-        hand.add(new Card(Card.Suit.CLUB, "3"));
-        hand.add(new Card(Card.Suit.CLUB, "9"));
-        hand.add(new Card(Card.Suit.CLUB, "10"));
-        System.out.println(hand.getMaxValue());
-    }
 }

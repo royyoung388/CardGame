@@ -35,7 +35,7 @@ Extensibility:
 Extends the CardGame.java, and implements all the general producer will create a new card game.
 Extends the Player.java and implements necessary methods, then you can get a new player with different behavior.
 
-# instruction
+# Instruction
 1. You should choose which card game you want to play.
 
 2.1. If you choose the BlackJack Game, which only have one player with one dealer.
@@ -47,3 +47,6 @@ You can also choose to end the game.
 Then every player should follow the prompt to do actions.
 After every round, the game will judge if the game is end.
 Every player can also choose to end the game.
+
+# Problem
+In shell, the Unicode Character can't show properly. So the suit of card printed is only string.

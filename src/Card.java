@@ -24,15 +24,20 @@ public class Card {
     public String toString() {
         switch (suit) {
             case SPADE:
-                return "\u2660" + rank;
+//                return "\u2660" + rank;
+                return "SPADE " + rank;
             case CLUB:
-                return "\u2663" + rank;
+//                return "\u2663" + rank;
+                return "CLUB " + rank;
             case HEART:
-                return "\u2665" + rank;
+//                return "\u2665" + rank;
+                return "HEART " + rank;
             case DIAMOND:
-                return "\u2666" + rank;
+//                return "\u2666" + rank;
+                return "DIAMOND " + rank;
             case JOKER:
-                return "\uD83C\uDCCF";
+//                return "\uD83C\uDCCF";
+                return "JOKER " + rank;
         }
         return "no card";
     }
