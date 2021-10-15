@@ -2,10 +2,10 @@ import java.util.List;
 
 public abstract class Hand {
     protected List<Card> cards;
-    protected STATUS status;
+    protected STATUS status = STATUS.NORMAL;
     protected int bet;
 
-    private enum STATUS {STAND, BUST, NORMAL, WIN}
+    enum STATUS {STAND, BUST, NORMAL, FOLD}
 
     public void hit(Card card) {
         add(card);
@@ -30,8 +30,16 @@ public abstract class Hand {
         status = STATUS.NORMAL;
     }
 
-    public void win() {
-        status = STATUS.WIN;
+    public boolean isNormal() {
+        return status == STATUS.NORMAL;
+    }
+
+    public void fold() {
+        status = STATUS.FOLD;
+    }
+
+    public boolean isFold() {
+        return status == STATUS.FOLD;
     }
 
     public int getBet() {
@@ -52,5 +60,7 @@ public abstract class Hand {
         normal();
     }
 
-    abstract boolean isBust();
+    public abstract int getMaxValue();
+
+    public abstract boolean isBust();
 }

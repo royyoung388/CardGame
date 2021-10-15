@@ -1,14 +1,9 @@
 import java.util.ArrayList;
 
-public class BJDealer extends Player {
+public class BJDealer extends BJPlayer {
 
     public BJDealer() {
-        hands = new ArrayList<>(1);
-        hands.add(new BJHand());
-    }
-
-    public Hand getHand() {
-        return hands.get(0);
+        super(0);
     }
 
     @Override

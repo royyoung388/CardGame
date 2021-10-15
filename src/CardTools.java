@@ -1,11 +1,9 @@
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class CardTools {
-    private static final String[] ranks = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "Joker"};
-    private static final int[] values = {-1, 2, 3, 4, 5, 6, 7, 9, 10, 10, 10, 10};
+    private static final String[] ranks = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
+    private static final int[] values = {-1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10};
 
     /**
      * @param rank
@@ -18,7 +16,13 @@ public class CardTools {
         throw new IllegalArgumentException("Unknown rank value");
     }
 
-    public static Integer[] getBJSum(List<Card> cards) {
+    /**
+     * get all possible value for Blackjack game
+     *
+     * @param cards
+     * @return
+     */
+    public static int[] getBJSum(List<Card> cards) {
         int sum = 0;
         int count = 0;
 
@@ -32,14 +36,14 @@ public class CardTools {
 
         // all possible sum for Ace
         int[] ace = new int[count];
-        Integer[] values = new Integer[(int) Math.pow(2, count)];
+        int[] values = new int[(int) Math.pow(2, count)];
         Arrays.fill(values, sum);
 
         int flag = 0;
-        while (flag != Math.pow(2, count) - 1) {
+        while (flag < Math.pow(2, count)) {
             int bit = 1;
             for (int i = 0; i < count; i++) {
-                if ((flag & bit) != 0)
+                if ((flag & bit) == 0)
                     ace[i] = 1;
                 else
                     ace[i] = 11;
@@ -49,7 +53,38 @@ public class CardTools {
                 values[flag] += i;
             flag += 1;
         }
-        Arrays.sort(values, Collections.reverseOrder());
+        Arrays.sort(values);
         return values;
+    }
+
+    /**
+     * get all possible value for TE game
+     *
+     * @param cards
+     * @return
+     */
+    public static int[] getTESum(List<Card> cards) {
+        int sum = 0;
+        int count = 0;
+
+        for (Card c : cards) {
+            int value = getFaceValue(c.getRank());
+            if (value != -1)
+                sum += value;
+            else
+                count++;
+        }
+
+        // more than one Ace
+        // only one Ace is changeable, others count as 11
+        if (count > 1) {
+            sum += (count - 1) * 11;
+        }
+
+        if (count >= 1) {
+            return new int[]{sum + 1, sum + 11};
+        } else {
+            return new int[]{sum};
+        }
     }
 }

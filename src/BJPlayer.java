@@ -2,7 +2,8 @@ import java.util.ArrayList;
 
 public class BJPlayer extends Player {
 
-    public BJPlayer() {
+    public BJPlayer(int money) {
+        this.money = money;
         hands = new ArrayList<>(1);
         hands.add(new BJHand());
     }
@@ -36,6 +37,7 @@ public class BJPlayer extends Player {
         for (Card c : hand.getCards())
             System.out.print(c + "  ");
         System.out.println();
+        System.out.println("bet: " + hand.getBet());
     }
 
 }
